@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <title>Document</title>
+</head>
+<body>
+    <div style="width: 900px; margin-left: auto; margin-right: auto;height: 100%;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <button onclick="toFirst()" type="button" class="btn btn-primary">Первая</button>
+            
+            <form class="mx-2 my-auto d-inline w-100">
+                <input  id="uniqueID" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
+              </form>
+            
+              <div style="width: 300px;">
+            <button  onclick="search()" type="button" class="btn btn-secondary ">Перейти</button>
+
+            <button onclick="toLast()" type="button" class="btn btn-success ">Последняя</button>
+
+            </div>
+            
+        </nav>
+        <p id="divfirst"></p>
+        <table class="table">
+            <thead>
+            <tr>
+            </tr>
+            </thead>
+            <tbody class = "item">       
+            </tbody>
+        </table>
+        <p id="divlast"></p>
+      </div>
+
+</body>
+<script>
+function toLast() {
+  document.getElementById("divlast").scrollIntoView({  behavior: 'smooth' });
+}
+function toFirst() {
+  document.getElementById("divfirst").scrollIntoView({  behavior: 'smooth' });
+}
+function search() {
+    var nameValue = document.getElementById("uniqueID").value;
+    document.getElementById(nameValue).scrollIntoView();
+    const elem = document.getElementById(nameValue).nextSibling;
+    elem.style.color =  "red"; 
+}
+    </script>
+<script>
+    $(document).ready(function() { 
+
+        
+
+        var delayInMilliseconds = 2000; //2 second
+        const Human = {
+            classrandomArray : [],
+            init(length, max) {
+                const array = Array.from({ length: 500 }, () => Math.random() * 50);
+                    this.classrandomArray =array
+            },
+            get () {
+                return this.classrandomArray 
+            }
+        }
+        const chris = Object.create(Human)
+        setTimeout(function() {
+        chris.init(500, 100)
+        }, delayInMilliseconds);
+        
+        setTimeout(function() {
+        const arrayfinal = chris.get()
+        let text = "";
+        //
+        for (let i = 0; i < arrayfinal.length; i++) {
+            text +=  "<tr><td style = 'visibility:hidden;' id ="+i+" > "+i+"</td><td>Mark "+arrayfinal[i]+"</td></tr>";
+        }
+        // for (let i = 0; i < arrayfinal.length; i++) {
+        //     text +=  "<tr><td style = 'display: none;'> "+i+"</td><td>Mark "+arrayfinal[i]+"</td></tr>";
+        // }
+        $('.item').html(text);
+        
+        
+        
+        }, 2500);
+       
+        
+        // $(".tbody").scrollTop($(".tbody")[0].scrollHeight);
+        
+
+});
+</script>
+
+</html>
